@@ -4,7 +4,7 @@
 
   // State Management
   const state = {
-    mode: 'compare', // 'compare', 'addition', 'quiz'
+    mode: 'compare', // 'compare', 'addition'
     pizza1: {
       denom: 4,
       num: 2,
@@ -70,7 +70,6 @@
   }
 
   function playSliceChime(sliceIndex, totalSlices) {
-    // Musical pentatonic scale based on slice index
     const baseFreq = 320;
     const ratio = Math.pow(2, (sliceIndex % 12) / 12);
     playTone(baseFreq * ratio, 'triangle', 0.18, 0.12);
@@ -137,7 +136,6 @@
       path.setAttribute('data-index', i);
 
       if (isSelected) {
-        // Pizza Sauce & Cheese Topping Color
         path.setAttribute('fill', pizzaKey === 'pizza1' ? '#f97316' : '#3b82f6');
         path.setAttribute('stroke', '#ffffff');
         path.setAttribute('stroke-width', '2.5');
@@ -225,20 +223,27 @@
     renderPizza('pizza-svg-1', state.pizza1, 'pizza1');
     renderPizza('pizza-svg-2', state.pizza2, 'pizza2');
 
-    // 2. Update Numerical Badges & Inputs
+    // 2. Update Numerical Badges & Inputs (Pizza 1)
     document.getElementById('num-val-1').textContent = state.pizza1.num;
     document.getElementById('denom-val-1').textContent = state.pizza1.denom;
     document.getElementById('dec-val-1').textContent = (state.pizza1.num / state.pizza1.denom).toFixed(3);
     document.getElementById('slider-denom-1').value = state.pizza1.denom;
     document.getElementById('slider-num-1').value = state.pizza1.num;
     document.getElementById('slider-num-1').max = state.pizza1.denom;
+    const dl1 = document.getElementById('denom-label-1'); if (dl1) dl1.textContent = state.pizza1.denom + '등분';
+    const bn1 = document.getElementById('bal-num-1'); if (bn1) bn1.textContent = state.pizza1.num;
+    const bd1 = document.getElementById('bal-denom-1'); if (bd1) bd1.textContent = state.pizza1.denom;
 
+    // 2. Update Numerical Badges & Inputs (Pizza 2)
     document.getElementById('num-val-2').textContent = state.pizza2.num;
     document.getElementById('denom-val-2').textContent = state.pizza2.denom;
     document.getElementById('dec-val-2').textContent = (state.pizza2.num / state.pizza2.denom).toFixed(3);
     document.getElementById('slider-denom-2').value = state.pizza2.denom;
     document.getElementById('slider-num-2').value = state.pizza2.num;
     document.getElementById('slider-num-2').max = state.pizza2.denom;
+    const dl2 = document.getElementById('denom-label-2'); if (dl2) dl2.textContent = state.pizza2.denom + '등분';
+    const bn2 = document.getElementById('bal-num-2'); if (bn2) bn2.textContent = state.pizza2.num;
+    const bd2 = document.getElementById('bal-denom-2'); if (bd2) bd2.textContent = state.pizza2.denom;
 
     // 3. Update Quick Chip Buttons active states
     document.querySelectorAll('[data-pizza="pizza1"][data-chip]').forEach(btn => {
@@ -279,11 +284,13 @@
       }
 
       stepContent.innerHTML = `
-        <strong>[단계별 통분 원리 설명]</strong><br>
-        1. 분모 <strong>${state.pizza1.denom}</strong>와 <strong>${state.pizza2.denom}</strong>의 최소공배수는 <strong>${commonDenom}</strong>입니다.<br>
-        2. 좌측 분수: $\frac{${state.pizza1.num}}{${state.pizza1.denom}} = \frac{${state.pizza1.num} \times ${commonDenom / state.pizza1.denom}}{${state.pizza1.denom} \times ${commonDenom / state.pizza1.denom}} = \mathbf{\frac{${convertedNum1}}{${commonDenom}}}$<br>
-        3. 우측 분수: $\frac{${state.pizza2.num}}{${state.pizza2.denom}} = \frac{${state.pizza2.num} \times ${commonDenom / state.pizza2.denom}}{${state.pizza2.denom} \times ${commonDenom / state.pizza2.denom}} = \mathbf{\frac{${convertedNum2}}{${commonDenom}}}$<br>
-        4. 같은 크기(${commonDenom}조각)로 똑같이 나누었을 때 조각 수(분자)는 각각 <strong>${convertedNum1}조각</strong>과 <strong>${convertedNum2}조각</strong>이므로 직관적으로 비교할 수 있습니다!
+        <div style="line-height: 1.8;">
+          <strong>[단계별 통분 원리 돋보기]</strong><br>
+          1. 두 분모 <strong>${state.pizza1.denom}</strong>과 <strong>${state.pizza2.denom}</strong>의 최소공배수는 <strong>${commonDenom}</strong>입니다.<br>
+          2. 피자 A: <span class="fraction-display" style="font-size:0.95rem;color:#ea580c;"><span class="fraction-numerator">${state.pizza1.num}</span><span class="fraction-denominator">${state.pizza1.denom}</span></span> = <span class="fraction-display" style="font-size:0.95rem;"><span class="fraction-numerator">${state.pizza1.num} × ${commonDenom / state.pizza1.denom}</span><span class="fraction-denominator">${state.pizza1.denom} × ${commonDenom / state.pizza1.denom}</span></span> = <span class="fraction-display" style="font-size:0.95rem;color:#ea580c;"><span class="fraction-numerator"><strong>${convertedNum1}</strong></span><span class="fraction-denominator"><strong>${commonDenom}</strong></span></span><br>
+          3. 피자 B: <span class="fraction-display" style="font-size:0.95rem;color:#2563eb;"><span class="fraction-numerator">${state.pizza2.num}</span><span class="fraction-denominator">${state.pizza2.denom}</span></span> = <span class="fraction-display" style="font-size:0.95rem;"><span class="fraction-numerator">${state.pizza2.num} × ${commonDenom / state.pizza2.denom}</span><span class="fraction-denominator">${state.pizza2.denom} × ${commonDenom / state.pizza2.denom}</span></span> = <span class="fraction-display" style="font-size:0.95rem;color:#2563eb;"><span class="fraction-numerator"><strong>${convertedNum2}</strong></span><span class="fraction-denominator"><strong>${commonDenom}</strong></span></span><br>
+          4. 두 피자를 모두 똑같이 <strong>${commonDenom}조각</strong>으로 나누었을 때, 토핑 조각 수는 각각 <strong>${convertedNum1}조각</strong>과 <strong>${convertedNum2}조각</strong>이므로 크기를 명확히 비교할 수 있습니다!
+        </div>
       `;
     } else if (state.mode === 'addition') {
       const sumNum = convertedNum1 + convertedNum2;
@@ -294,11 +301,18 @@
       balanceSymbol.textContent = '+';
       balanceSymbol.style.color = '#8b5cf6';
       balanceVerdict.className = 'balance-verdict verdict-equal';
-      balanceVerdict.innerHTML = `합계: $\frac{${state.pizza1.num}}{${state.pizza1.denom}} + \frac{${state.pizza2.num}}{${state.pizza2.denom}} = \mathbf{\frac{${sumNum}}{${commonDenom}}}$ (기약분수: $\mathbf{\frac{${simpNum}}{${simpDenom}}}$ 또는 소수 ${(sumNum / commonDenom).toFixed(3)}판)`;
+      balanceVerdict.innerHTML = `
+        합계: <span class="fraction-display" style="font-size:1.1rem;"><span class="fraction-numerator">${state.pizza1.num}</span><span class="fraction-denominator">${state.pizza1.denom}</span></span> + <span class="fraction-display" style="font-size:1.1rem;"><span class="fraction-numerator">${state.pizza2.num}</span><span class="fraction-denominator">${state.pizza2.denom}</span></span> = <span class="fraction-display" style="font-size:1.1rem;color:#8b5cf6;"><span class="fraction-numerator"><strong>${sumNum}</strong></span><span class="fraction-denominator"><strong>${commonDenom}</strong></span></span> (기약분수: <span class="fraction-display" style="font-size:1.1rem;color:#10b981;"><span class="fraction-numerator"><strong>${simpNum}</strong></span><span class="fraction-denominator"><strong>${simpDenom}</strong></span></span> 또는 ${(sumNum / commonDenom).toFixed(3)}판)
+      `;
 
       stepContent.innerHTML = `
-        <strong>[분수 덧셈 통분 공식]</strong><br>
-        $\frac{${state.pizza1.num}}{${state.pizza1.denom}} + \frac{${state.pizza2.num}}{${state.pizza2.denom}} = \frac{${convertedNum1}}{${commonDenom}} + \frac{${convertedNum2}}{${commonDenom}} = \frac{${convertedNum1} + ${convertedNum2}}{${commonDenom}} = \mathbf{\frac{${sumNum}}{${commonDenom}}}$
+        <div style="line-height: 1.8;">
+          <strong>[분수 덧셈 통분 공식 단계별 풀이]</strong><br>
+          <span class="fraction-display" style="font-size:0.95rem;"><span class="fraction-numerator">${state.pizza1.num}</span><span class="fraction-denominator">${state.pizza1.denom}</span></span> + <span class="fraction-display" style="font-size:0.95rem;"><span class="fraction-numerator">${state.pizza2.num}</span><span class="fraction-denominator">${state.pizza2.denom}</span></span>
+          = <span class="fraction-display" style="font-size:0.95rem;"><span class="fraction-numerator">${convertedNum1}</span><span class="fraction-denominator">${commonDenom}</span></span> + <span class="fraction-display" style="font-size:0.95rem;"><span class="fraction-numerator">${convertedNum2}</span><span class="fraction-denominator">${commonDenom}</span></span>
+          = <span class="fraction-display" style="font-size:0.95rem;"><span class="fraction-numerator">${convertedNum1} + ${convertedNum2}</span><span class="fraction-denominator">${commonDenom}</span></span>
+          = <span class="fraction-display" style="font-size:0.95rem;color:#8b5cf6;"><span class="fraction-numerator"><strong>${sumNum}</strong></span><span class="fraction-denominator"><strong>${commonDenom}</strong></span></span>
+        </div>
       `;
     }
   }
