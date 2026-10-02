@@ -41,6 +41,7 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  word-break: keep-all;
 }
 
 /* Header */
@@ -441,21 +442,50 @@ body {
   line-height: 1.7;
   margin-bottom: 1rem;
 }
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  margin-top: 1rem;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+}
 .fraction-table {
   width: 100%;
   border-collapse: collapse;
-  margin-top: 1rem;
-  font-size: 0.875rem;
+  font-size: 0.9375rem;
+  background: #ffffff;
 }
 .fraction-table th, .fraction-table td {
   border: 1px solid var(--border);
-  padding: 0.75rem;
+  padding: 0.85rem 1rem;
   text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
 }
 .fraction-table th {
-  background: #f1f5f9;
+  background: #f8fafc;
   font-weight: 700;
-  color: #334155;
+  color: #1e293b;
+  font-size: 0.875rem;
+  letter-spacing: -0.01em;
+}
+.fraction-table tbody tr:nth-child(even) {
+  background-color: #f8fafc;
+}
+.fraction-table tbody tr:hover {
+  background-color: #fff7ed;
+}
+.table-fraction {
+  font-size: 0.95rem;
+  color: #1e293b;
+  font-weight: 700;
+  display: inline-flex;
+}
+.fraction-table tbody tr td:first-child .table-fraction {
+  color: var(--primary-hover);
+  font-weight: 800;
 }
 
 /* Footer */

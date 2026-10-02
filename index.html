@@ -272,52 +272,190 @@
     <h3>📚 자주 쓰이는 대표 동치분수 한눈에 보기</h3>
     <p>분모와 분자에 0이 아닌 같은 수를 곱하거나 나누어도 분수의 크기는 변하지 않습니다. 아래 표에서 피자 조각의 크기가 어떻게 변하는지 확인해 보세요.</p>
     
-    <table class="fraction-table">
-      <thead>
-        <tr>
-          <th>기준 분수</th>
-          <th>2배 확장</th>
-          <th>3배 확장</th>
-          <th>4배 확장</th>
-          <th>소수 값</th>
-          <th>백분율 (%)</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td><strong>1/2</strong></td>
-          <td>2/4</td>
-          <td>3/6</td>
-          <td>4/8</td>
-          <td>0.5</td>
-          <td>50%</td>
-        </tr>
-        <tr>
-          <td><strong>1/3</strong></td>
-          <td>2/6</td>
-          <td>3/9</td>
-          <td>4/12</td>
-          <td>0.333...</td>
-          <td>33.3%</td>
-        </tr>
-        <tr>
-          <td><strong>1/4</strong></td>
-          <td>2/8</td>
-          <td>3/12</td>
-          <td>4/16</td>
-          <td>0.25</td>
-          <td>25%</td>
-        </tr>
-        <tr>
-          <td><strong>3/4</strong></td>
-          <td>6/8</td>
-          <td>9/12</td>
-          <td>12/16</td>
-          <td>0.75</td>
-          <td>75%</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-responsive">
+      <table class="fraction-table">
+        <thead>
+          <tr>
+            <th>기준 분수</th>
+            <th>동치분수 (×2)</th>
+            <th>동치분수 (×3)</th>
+            <th>동치분수 (×4)</th>
+            <th>소수 표기</th>
+            <th>백분율 (%)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              <span class="fraction-display table-fraction">
+                <span class="fraction-numerator">1</span>
+                <span class="fraction-denominator">2</span>
+              </span>
+            </td>
+            <td>
+              <span class="fraction-display table-fraction">
+                <span class="fraction-numerator">2</span>
+                <span class="fraction-denominator">4</span>
+              </span>
+            </td>
+            <td>
+              <span class="fraction-display table-fraction">
+                <span class="fraction-numerator">3</span>
+                <span class="fraction-denominator">6</span>
+              </span>
+            </td>
+            <td>
+              <span class="fraction-display table-fraction">
+                <span class="fraction-numerator">4</span>
+                <span class="fraction-denominator">8</span>
+              </span>
+            </td>
+            <td>0.5</td>
+            <td>50%</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="fraction-display table-fraction">
+                <span class="fraction-numerator">1</span>
+                <span class="fraction-denominator">3</span>
+              </span>
+            </td>
+            <td>
+              <span class="fraction-display table-fraction">
+                <span class="fraction-numerator">2</span>
+                <span class="fraction-denominator">6</span>
+              </span>
+            </td>
+            <td>
+              <span class="fraction-display table-fraction">
+                <span class="fraction-numerator">3</span>
+                <span class="fraction-denominator">9</span>
+              </span>
+            </td>
+            <td>
+              <span class="fraction-display table-fraction">
+                <span class="fraction-numerator">4</span>
+                <span class="fraction-denominator">12</span>
+              </span>
+            </td>
+            <td>약 0.333</td>
+            <td>약 33.3%</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="fraction-display table-fraction">
+                <span class="fraction-numerator">2</span>
+                <span class="fraction-denominator">3</span>
+              </span>
+            </td>
+            <td>
+              <span class="fraction-display table-fraction">
+                <span class="fraction-numerator">4</span>
+                <span class="fraction-denominator">6</span>
+              </span>
+            </td>
+            <td>
+              <span class="fraction-display table-fraction">
+                <span class="fraction-numerator">6</span>
+                <span class="fraction-denominator">9</span>
+              </span>
+            </td>
+            <td>
+              <span class="fraction-display table-fraction">
+                <span class="fraction-numerator">8</span>
+                <span class="fraction-denominator">12</span>
+              </span>
+            </td>
+            <td>약 0.667</td>
+            <td>약 66.7%</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="fraction-display table-fraction">
+                <span class="fraction-numerator">1</span>
+                <span class="fraction-denominator">4</span>
+              </span>
+            </td>
+            <td>
+              <span class="fraction-display table-fraction">
+                <span class="fraction-numerator">2</span>
+                <span class="fraction-denominator">8</span>
+              </span>
+            </td>
+            <td>
+              <span class="fraction-display table-fraction">
+                <span class="fraction-numerator">3</span>
+                <span class="fraction-denominator">12</span>
+              </span>
+            </td>
+            <td>
+              <span class="fraction-display table-fraction">
+                <span class="fraction-numerator">4</span>
+                <span class="fraction-denominator">16</span>
+              </span>
+            </td>
+            <td>0.25</td>
+            <td>25%</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="fraction-display table-fraction">
+                <span class="fraction-numerator">3</span>
+                <span class="fraction-denominator">4</span>
+              </span>
+            </td>
+            <td>
+              <span class="fraction-display table-fraction">
+                <span class="fraction-numerator">6</span>
+                <span class="fraction-denominator">8</span>
+              </span>
+            </td>
+            <td>
+              <span class="fraction-display table-fraction">
+                <span class="fraction-numerator">9</span>
+                <span class="fraction-denominator">12</span>
+              </span>
+            </td>
+            <td>
+              <span class="fraction-display table-fraction">
+                <span class="fraction-numerator">12</span>
+                <span class="fraction-denominator">16</span>
+              </span>
+            </td>
+            <td>0.75</td>
+            <td>75%</td>
+          </tr>
+          <tr>
+            <td>
+              <span class="fraction-display table-fraction">
+                <span class="fraction-numerator">1</span>
+                <span class="fraction-denominator">5</span>
+              </span>
+            </td>
+            <td>
+              <span class="fraction-display table-fraction">
+                <span class="fraction-numerator">2</span>
+                <span class="fraction-denominator">10</span>
+              </span>
+            </td>
+            <td>
+              <span class="fraction-display table-fraction">
+                <span class="fraction-numerator">3</span>
+                <span class="fraction-denominator">15</span>
+              </span>
+            </td>
+            <td>
+              <span class="fraction-display table-fraction">
+                <span class="fraction-numerator">4</span>
+                <span class="fraction-denominator">20</span>
+              </span>
+            </td>
+            <td>0.2</td>
+            <td>20%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </section>
 
   <!-- ADSENSE START: bottom -->
