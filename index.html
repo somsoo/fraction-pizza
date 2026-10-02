@@ -76,51 +76,36 @@
 <!-- ADSENSE START: loader -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2228289204702106" crossorigin="anonymous"></script>
 <!-- ADSENSE END: loader -->
-<link rel="stylesheet" href="style.css?v=1.1">
+<link rel="stylesheet" href="style.css?v=2.0">
 </head>
 <body>
 
-<!-- Header -->
-<header class="site-header">
-  <div class="header-inner">
-    <a href="/" class="logo-area">
-      <span class="logo-icon">🍕</span>
-      <span class="logo-title">분수 피자 슬라이서</span>
-      <span class="logo-badge">에듀테크 v1.0</span>
-    </a>
-    <nav class="header-nav">
-      <a href="about.html">학습 가이드</a>
-      <a href="privacy.html">개인정보처리방침</a>
-    </nav>
-  </div>
+<!-- Header - Kiro Signature Gradient Brand Header -->
+<header class="header">
+  <h1>🍕 분수 피자 슬라이서</h1>
+  <div class="header-sub">피자로 직접 만지고 비교하는 원형 분수·통분 시각화 · 기기 내 100% 로컬 연산</div>
 </header>
 
-<main class="main-wrapper">
+<main class="wrap">
 
   <!-- ADSENSE START: top -->
-  <div class="ad-slot-container ad-top-banner">
+  <div class="ad-box ad-top">
     <ins class="adsbygoogle" style="display:inline-block;width:100%;height:60px" data-ad-client="ca-pub-2228289204702106" data-ad-slot="3824727725" data-ad-format="horizontal" data-full-width-responsive="true"></ins>
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
   <!-- ADSENSE END: top -->
 
-  <!-- Hero Intro -->
-  <section class="hero-intro">
-    <h1 class="hero-title">피자로 맛보는 시각적 분수 탐구소</h1>
-    <p class="hero-desc">피자를 직접 터치해 조각을 나누고 채워보세요. 1/2이 왜 2/4, 4/8과 크기가 같은지 한눈에 직관할 수 있습니다.</p>
-  </section>
-
   <!-- Mode Selector Tabs -->
-  <nav class="mode-tabs">
-    <button type="button" class="mode-btn active" data-mode="compare">⚖️ 크기 비교 & 동치분수</button>
-    <button type="button" class="mode-btn" data-mode="addition">➕ 분수 덧셈 & 자동 통분</button>
+  <nav class="mode-tabs" aria-label="학습 모드 선택">
+    <button type="button" class="mode-btn active" data-mode="compare">⚖️ 크기 비교</button>
+    <button type="button" class="mode-btn" data-mode="addition">➕ 통분 덧셈</button>
   </nav>
 
   <!-- 2-Column Gold Standard Grid (PC 1:1) -->
-  <div class="workspace-grid">
+  <div class="grid2">
 
     <!-- Column 1: Pizza 1 -->
-    <div class="tool-card">
+    <div class="card">
       <div class="card-title-box">
         <h2 class="card-title">🍕 첫 번째 피자 (A)</h2>
         <div class="fraction-badge-box">
@@ -168,7 +153,7 @@
     </div>
 
     <!-- Column 2: Pizza 2 -->
-    <div class="tool-card">
+    <div class="card">
       <div class="card-title-box">
         <h2 class="card-title">🍕 두 번째 피자 (B)</h2>
         <div class="fraction-badge-box">
@@ -218,19 +203,20 @@
   </div>
 
   <!-- ADSENSE START: mid -->
-  <div class="ad-slot-container ad-mid-banner">
+  <div class="ad-box ad-mid">
     <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2228289204702106" data-ad-slot="1186914926" data-ad-format="auto" data-full-width-responsive="true"></ins>
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
   <!-- ADSENSE END: mid -->
 
   <!-- Comparison Balance & Interactive Result Section -->
-  <section class="comparison-section">
+  <section class="card comparison-section">
     <div class="comparison-header">
-      <h3 style="font-size: 1.25rem; font-weight: 800;">🔍 실시간 비교 및 연산 분석기</h3>
-      <div style="display: flex; gap: 0.5rem;">
-        <button type="button" id="btn-preset-half" class="chip-btn">예제: 1/2 = 2/4</button>
-        <button type="button" id="btn-preset-third" class="chip-btn">예제: 1/3 = 2/6</button>
+      <h3>🔍 실시간 비교 및 연산 분석기</h3>
+      <div class="preset-group">
+        <span class="preset-lbl">추천 예제:</span>
+        <button type="button" id="btn-preset-half" class="chip-btn">½ = 2/4</button>
+        <button type="button" id="btn-preset-third" class="chip-btn">⅓ = 2/6</button>
       </div>
     </div>
 
@@ -265,10 +251,15 @@
         통분 원리 로딩 중...
       </div>
     </div>
+
+    <!-- Kiro Standard Result Copy Button -->
+    <div style="margin-top: 12px;">
+      <button type="button" id="btn-copy-result" class="btn" style="width: 100%; font-weight: 700;">📋 실시간 계산 결과 복사하기</button>
+    </div>
   </section>
 
   <!-- Full Width Detailed Guide & Table Section -->
-  <section class="info-section">
+  <section class="card info-section">
     <h3>📚 자주 쓰이는 대표 동치분수 한눈에 보기</h3>
     <p>분모와 분자에 0이 아닌 같은 수를 곱하거나 나누어도 분수의 크기는 변하지 않습니다. 아래 표에서 피자 조각의 크기가 어떻게 변하는지 확인해 보세요.</p>
     
@@ -459,13 +450,15 @@
   </section>
 
   <!-- ADSENSE START: bottom -->
-  <div class="ad-slot-container ad-bottom-banner">
+  <div class="ad-box ad-bottom">
     <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2228289204702106" data-ad-slot="3416334507" data-ad-format="auto" data-full-width-responsive="true"></ins>
     <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
   </div>
   <!-- ADSENSE END: bottom -->
 
 </main>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
 
 <!-- Footer -->
 <footer class="site-footer">

@@ -368,6 +368,34 @@
         setNumerator('pizza2', 2);
       });
     }
+
+    // Result Copy Button (Kiro Section 12)
+    const btnCopy = document.getElementById('btn-copy-result');
+    if (btnCopy) {
+      btnCopy.addEventListener('click', () => {
+        const verdictEl = document.getElementById('balance-verdict');
+        const verdictText = verdictEl ? verdictEl.innerText.trim() : '';
+        const shareText = `[분수 피자 슬라이서 계산 결과]\n${verdictText}\n\n👉 지금 직접 해보기: https://fraction-pizza.enjoy-onepage.com/`;
+
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(shareText).then(() => {
+            showToast('결과가 클립보드에 복사되었습니다! 🎉');
+          }).catch(() => {
+            showToast('복사되었습니다.');
+          });
+        } else {
+          showToast('결과가 복사되었습니다.');
+        }
+      });
+    }
+  }
+
+  function showToast(msg) {
+    const toast = document.getElementById('toast');
+    if (!toast) return;
+    toast.textContent = msg;
+    toast.classList.add('show');
+    setTimeout(() => toast.classList.remove('show'), 2200);
   }
 
   // DOM Loaded Entrypoint
