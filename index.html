@@ -76,7 +76,7 @@
 <!-- ADSENSE START: loader -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2228289204702106" crossorigin="anonymous"></script>
 <!-- ADSENSE END: loader -->
-<link rel="stylesheet" href="style.css?v=3.2">
+<link rel="stylesheet" href="style.css?v=3.3">
 </head>
 <body>
 
@@ -120,6 +120,7 @@
       <!-- Wooden Plate Stage -->
       <div class="plate">
         <svg id="pizza-svg-1" class="pizza-svg" viewBox="0 0 300 300" role="img" aria-label="첫 번째 피자 분수 시각화"></svg>
+        <div class="plate-status" id="plate-status-1">4등분 중 2조각 선택 (2/4)</div>
         <div class="plate-caption">👆 피자 조각을 직접 탭해 토핑을 올리거나 빼보세요</div>
       </div>
 
@@ -127,9 +128,13 @@
       <div class="control-group">
         <div class="control-label-row">
           <span class="lbl">전체 몇 조각으로 나눌까요? (분모)</span>
-          <span style="font-weight: 800; color: var(--accent);" id="denom-label-1">4등분</span>
+          <span class="control-badge" id="denom-label-1">4등분</span>
         </div>
         <input type="range" id="slider-denom-1" class="range-slider" min="1" max="16" value="4" aria-label="피자 1 분모 슬라이더">
+        <div class="stepper-row" style="margin-bottom: 6px;">
+          <button type="button" id="btn-denom-minus-1" class="step-btn">- 1등분</button>
+          <button type="button" id="btn-denom-plus-1" class="step-btn">+ 1등분</button>
+        </div>
         <div class="quick-chips">
           <button type="button" class="chip-btn" data-pizza="pizza1" data-chip="2">2등분</button>
           <button type="button" class="chip-btn" data-pizza="pizza1" data-chip="3">3등분</button>
@@ -143,6 +148,7 @@
       <div class="control-group">
         <div class="control-label-row">
           <span class="lbl">선택한 조각 수 (분자)</span>
+          <span class="control-badge" id="num-label-1">2조각</span>
         </div>
         <input type="range" id="slider-num-1" class="range-slider" min="0" max="4" value="2" aria-label="피자 1 분자 슬라이더">
         <div class="stepper-row">
@@ -168,6 +174,7 @@
       <!-- Wooden Plate Stage -->
       <div class="plate">
         <svg id="pizza-svg-2" class="pizza-svg" viewBox="0 0 300 300" role="img" aria-label="두 번째 피자 분수 시각화"></svg>
+        <div class="plate-status blue" id="plate-status-2">8등분 중 4조각 선택 (4/8)</div>
         <div class="plate-caption">👆 피자 조각을 직접 탭해 토핑을 올리거나 빼보세요</div>
       </div>
 
@@ -175,9 +182,13 @@
       <div class="control-group">
         <div class="control-label-row">
           <span class="lbl">전체 몇 조각으로 나눌까요? (분모)</span>
-          <span style="font-weight: 800; color: var(--accent2);" id="denom-label-2">8등분</span>
+          <span class="control-badge blue" id="denom-label-2">8등분</span>
         </div>
         <input type="range" id="slider-denom-2" class="range-slider blue" min="1" max="16" value="8" aria-label="피자 2 분모 슬라이더">
+        <div class="stepper-row" style="margin-bottom: 6px;">
+          <button type="button" id="btn-denom-minus-2" class="step-btn">- 1등분</button>
+          <button type="button" id="btn-denom-plus-2" class="step-btn">+ 1등분</button>
+        </div>
         <div class="quick-chips">
           <button type="button" class="chip-btn blue" data-pizza="pizza2" data-chip="2">2등분</button>
           <button type="button" class="chip-btn blue" data-pizza="pizza2" data-chip="3">3등분</button>
@@ -191,6 +202,7 @@
       <div class="control-group">
         <div class="control-label-row">
           <span class="lbl">선택한 조각 수 (분자)</span>
+          <span class="control-badge blue" id="num-label-2">4조각</span>
         </div>
         <input type="range" id="slider-num-2" class="range-slider blue" min="0" max="8" value="4" aria-label="피자 2 분자 슬라이더">
         <div class="stepper-row">
@@ -213,11 +225,6 @@
   <section class="card comparison-section" aria-labelledby="comp-title">
     <div class="card-header-row">
       <h2 id="comp-title">⚖️ 3. 실시간 크기 비교</h2>
-    </div>
-    <div class="preset-row">
-      <span class="preset-lbl">추천 예제:</span>
-      <button type="button" id="btn-preset-half" class="chip-btn">½ = 2/4</button>
-      <button type="button" id="btn-preset-third" class="chip-btn">⅓ = 2/6</button>
     </div>
 
     <div class="receipt">
@@ -498,6 +505,6 @@
   </div>
 </footer>
 
-<script src="app.js"></script>
+<script src="app.js?v=3.3"></script>
 </body>
 </html>

@@ -244,9 +244,8 @@
 
   function setDenominator(pizzaKey, denom) {
     const p = state[pizzaKey];
-    const prevRatio = p.denom > 0 ? p.num / p.denom : 0;
     p.denom = Math.max(1, Math.min(16, denom));
-    p.num = Math.round(prevRatio * p.denom);
+    p.num = Math.min(p.num, p.denom);
     p.selectedSlices.clear();
     for (let i = 0; i < p.num; i++) {
       p.selectedSlices.add(i);
@@ -269,6 +268,8 @@
     document.getElementById('slider-num-1').value = state.pizza1.num;
     document.getElementById('slider-num-1').max = state.pizza1.denom;
     const dl1 = document.getElementById('denom-label-1'); if (dl1) dl1.textContent = state.pizza1.denom + '등분';
+    const nl1 = document.getElementById('num-label-1'); if (nl1) nl1.textContent = state.pizza1.num + '조각';
+    const ps1 = document.getElementById('plate-status-1'); if (ps1) ps1.textContent = `${state.pizza1.denom}등분 중 ${state.pizza1.num}조각 선택 (${state.pizza1.num}/${state.pizza1.denom})`;
     const bn1 = document.getElementById('bal-num-1'); if (bn1) bn1.textContent = state.pizza1.num;
     const bd1 = document.getElementById('bal-denom-1'); if (bd1) bd1.textContent = state.pizza1.denom;
 
@@ -280,6 +281,8 @@
     document.getElementById('slider-num-2').value = state.pizza2.num;
     document.getElementById('slider-num-2').max = state.pizza2.denom;
     const dl2 = document.getElementById('denom-label-2'); if (dl2) dl2.textContent = state.pizza2.denom + '등분';
+    const nl2 = document.getElementById('num-label-2'); if (nl2) nl2.textContent = state.pizza2.num + '조각';
+    const ps2 = document.getElementById('plate-status-2'); if (ps2) ps2.textContent = `${state.pizza2.denom}등분 중 ${state.pizza2.num}조각 선택 (${state.pizza2.num}/${state.pizza2.denom})`;
     const bn2 = document.getElementById('bal-num-2'); if (bn2) bn2.textContent = state.pizza2.num;
     const bd2 = document.getElementById('bal-denom-2'); if (bd2) bd2.textContent = state.pizza2.denom;
 
@@ -399,17 +402,34 @@
       });
     });
 
-    // Sliders
-    document.getElementById('slider-denom-1').addEventListener('input', (e) => setDenominator('pizza1', parseInt(e.target.value)));
-    document.getElementById('slider-num-1').addEventListener('input', (e) => setNumerator('pizza1', parseInt(e.target.value)));
-    document.getElementById('slider-denom-2').addEventListener('input', (e) => setDenominator('pizza2', parseInt(e.target.value)));
-    document.getElementById('slider-num-2').addEventListener('input', (e) => setNumerator('pizza2', parseInt(e.target.value)));
+    // Sliders (bind both input and change for mobile/desktop reliability)
+    const bindSlider = (id, handler) => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.addEventListener('input', handler);
+        el.addEventListener('change', handler);
+      }
+    };
+    bindSlider('slider-denom-1', (e) => setDenominator('pizza1', parseInt(e.target.value)));
+    bindSlider('slider-num-1', (e) => setNumerator('pizza1', parseInt(e.target.value)));
+    bindSlider('slider-denom-2', (e) => setDenominator('pizza2', parseInt(e.target.value)));
+    bindSlider('slider-num-2', (e) => setNumerator('pizza2', parseInt(e.target.value)));
 
-    // Steppers
+    // Numerator Steppers
     document.getElementById('btn-num-minus-1').addEventListener('click', () => setNumerator('pizza1', state.pizza1.num - 1));
     document.getElementById('btn-num-plus-1').addEventListener('click', () => setNumerator('pizza1', state.pizza1.num + 1));
     document.getElementById('btn-num-minus-2').addEventListener('click', () => setNumerator('pizza2', state.pizza2.num - 1));
     document.getElementById('btn-num-plus-2').addEventListener('click', () => setNumerator('pizza2', state.pizza2.num + 1));
+
+    // Denominator Steppers
+    const bdm1 = document.getElementById('btn-denom-minus-1');
+    if (bdm1) bdm1.addEventListener('click', () => setDenominator('pizza1', state.pizza1.denom - 1));
+    const bdp1 = document.getElementById('btn-denom-plus-1');
+    if (bdp1) bdp1.addEventListener('click', () => setDenominator('pizza1', state.pizza1.denom + 1));
+    const bdm2 = document.getElementById('btn-denom-minus-2');
+    if (bdm2) bdm2.addEventListener('click', () => setDenominator('pizza2', state.pizza2.denom - 1));
+    const bdp2 = document.getElementById('btn-denom-plus-2');
+    if (bdp2) bdp2.addEventListener('click', () => setDenominator('pizza2', state.pizza2.denom + 1));
 
     // Quick Denominator Chips
     document.querySelectorAll('[data-chip]').forEach(btn => {
@@ -418,26 +438,6 @@
         setDenominator(pKey, parseInt(btn.dataset.chip));
       });
     });
-
-    // Preset Challenge Buttons
-    const btnPres1 = document.getElementById('btn-preset-half');
-    if (btnPres1) {
-      btnPres1.addEventListener('click', () => {
-        state.pizza1.denom = 2; state.pizza1.num = 1;
-        state.pizza2.denom = 4; state.pizza2.num = 2;
-        setNumerator('pizza1', 1);
-        setNumerator('pizza2', 2);
-      });
-    }
-    const btnPres2 = document.getElementById('btn-preset-third');
-    if (btnPres2) {
-      btnPres2.addEventListener('click', () => {
-        state.pizza1.denom = 3; state.pizza1.num = 1;
-        state.pizza2.denom = 6; state.pizza2.num = 2;
-        setNumerator('pizza1', 1);
-        setNumerator('pizza2', 2);
-      });
-    }
 
     // Result Copy Button (Kiro Section 12)
     const btnCopy = document.getElementById('btn-copy-result');
