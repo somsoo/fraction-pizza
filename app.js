@@ -291,65 +291,97 @@
       btn.classList.toggle('active', parseInt(btn.dataset.chip) === state.pizza2.denom);
     });
 
-    // 4. Comparison & Addition Mode Verdict
+    // 4. Comparison & Addition Mode Verdict & Plain Korean Explanation
     const v1 = state.pizza1.num / state.pizza1.denom;
     const v2 = state.pizza2.num / state.pizza2.denom;
     const balanceSymbol = document.getElementById('balance-symbol');
     const balanceVerdict = document.getElementById('balance-verdict');
     const stepContent = document.getElementById('step-content');
+    const compTitle = document.getElementById('comp-title');
+
+    if (compTitle) {
+      compTitle.textContent = state.mode === 'compare' ? '⚖️ 3. 실시간 크기 비교' : '➕ 3. 실시간 분수 덧셈';
+    }
 
     const commonDenom = lcm(state.pizza1.denom, state.pizza2.denom);
     const convertedNum1 = state.pizza1.num * (commonDenom / state.pizza1.denom);
     const convertedNum2 = state.pizza2.num * (commonDenom / state.pizza2.denom);
 
     if (state.mode === 'compare') {
+      const diffSlices = Math.abs(convertedNum1 - convertedNum2);
+
       if (Math.abs(v1 - v2) < 0.00001) {
         balanceSymbol.textContent = '=';
         balanceSymbol.style.color = '#10b981';
         balanceVerdict.className = 'balance-verdict verdict-equal';
-        balanceVerdict.innerHTML = `🎉 두 분수는 크기가 정확히 같습니다! (동치분수: ${state.pizza1.num}/${state.pizza1.denom} = ${state.pizza2.num}/${state.pizza2.denom})`;
+        balanceVerdict.innerHTML = `🎉 두 피자의 크기가 정확히 같습니다! (${state.pizza1.num}/${state.pizza1.denom} = ${state.pizza2.num}/${state.pizza2.denom})`;
         playSuccessChord();
+
+        stepContent.innerHTML = `
+          <div class="explanation-box">
+            <p class="exp-title">💡 <strong>피자 크기 비교 결과</strong></p>
+            <p class="exp-desc">두 피자는 <strong>크기가 정확히 같습니다</strong>. 나눈 조각 수만 다를 뿐, 먹을 수 있는 피자의 실제 면적이 똑같습니다.</p>
+            <div class="exp-step">
+              • <strong>같은 크기로 맞춰보기:</strong> 두 피자를 똑같이 <strong>${commonDenom}조각</strong> 크기로 나누면, 피자 A와 피자 B 모두 정확히 <strong>${convertedNum1}조각</strong>씩 됩니다.
+            </div>
+          </div>
+        `;
       } else if (v1 > v2) {
         balanceSymbol.textContent = '>';
         balanceSymbol.style.color = '#f97316';
         balanceVerdict.className = 'balance-verdict verdict-diff';
-        balanceVerdict.innerHTML = `좌측 피자(${state.pizza1.num}/${state.pizza1.denom})가 우측 피자(${state.pizza2.num}/${state.pizza2.denom})보다 <strong>${(v1 - v2).toFixed(3)}</strong> 더 큽니다.`;
+        balanceVerdict.innerHTML = `피자 A(${state.pizza1.num}/${state.pizza1.denom})가 피자 B(${state.pizza2.num}/${state.pizza2.denom})보다 더 큽니다.`;
+
+        stepContent.innerHTML = `
+          <div class="explanation-box">
+            <p class="exp-title">💡 <strong>피자 크기 비교 결과</strong></p>
+            <p class="exp-desc"><strong>피자 A</strong>가 <strong>피자 B</strong>보다 더 큽니다.</p>
+            <div class="exp-step">
+              • <strong>같은 크기로 맞춰보기:</strong> 두 피자를 똑같이 <strong>${commonDenom}조각</strong> 크기로 나누면, 피자 A는 <strong>${convertedNum1}조각</strong>, 피자 B는 <strong>${convertedNum2}조각</strong>이 됩니다.<br>
+              • <strong>차이:</strong> 피자 A가 피자 B보다 <strong>${diffSlices}조각</strong> 더 많습니다.
+            </div>
+          </div>
+        `;
       } else {
         balanceSymbol.textContent = '<';
         balanceSymbol.style.color = '#3b82f6';
         balanceVerdict.className = 'balance-verdict verdict-diff';
-        balanceVerdict.innerHTML = `우측 피자(${state.pizza2.num}/${state.pizza2.denom})가 좌측 피자(${state.pizza1.num}/${state.pizza1.denom})보다 <strong>${(v2 - v1).toFixed(3)}</strong> 더 큽니다.`;
-      }
+        balanceVerdict.innerHTML = `피자 B(${state.pizza2.num}/${state.pizza2.denom})가 피자 A(${state.pizza1.num}/${state.pizza1.denom})보다 더 큽니다.`;
 
-      stepContent.innerHTML = `
-        <div style="line-height: 1.8;">
-          <strong>[단계별 통분 원리 돋보기]</strong><br>
-          1. 두 분모 <strong>${state.pizza1.denom}</strong>과 <strong>${state.pizza2.denom}</strong>의 최소공배수는 <strong>${commonDenom}</strong>입니다.<br>
-          2. 피자 A: <span class="fraction-display" style="font-size:0.95rem;color:#ea580c;"><span class="fraction-numerator">${state.pizza1.num}</span><span class="fraction-denominator">${state.pizza1.denom}</span></span> = <span class="fraction-display" style="font-size:0.95rem;"><span class="fraction-numerator">${state.pizza1.num} × ${commonDenom / state.pizza1.denom}</span><span class="fraction-denominator">${state.pizza1.denom} × ${commonDenom / state.pizza1.denom}</span></span> = <span class="fraction-display" style="font-size:0.95rem;color:#ea580c;"><span class="fraction-numerator"><strong>${convertedNum1}</strong></span><span class="fraction-denominator"><strong>${commonDenom}</strong></span></span><br>
-          3. 피자 B: <span class="fraction-display" style="font-size:0.95rem;color:#2563eb;"><span class="fraction-numerator">${state.pizza2.num}</span><span class="fraction-denominator">${state.pizza2.denom}</span></span> = <span class="fraction-display" style="font-size:0.95rem;"><span class="fraction-numerator">${state.pizza2.num} × ${commonDenom / state.pizza2.denom}</span><span class="fraction-denominator">${state.pizza2.denom} × ${commonDenom / state.pizza2.denom}</span></span> = <span class="fraction-display" style="font-size:0.95rem;color:#2563eb;"><span class="fraction-numerator"><strong>${convertedNum2}</strong></span><span class="fraction-denominator"><strong>${commonDenom}</strong></span></span><br>
-          4. 두 피자를 모두 똑같이 <strong>${commonDenom}조각</strong>으로 나누었을 때, 토핑 조각 수는 각각 <strong>${convertedNum1}조각</strong>과 <strong>${convertedNum2}조각</strong>이므로 크기를 명확히 비교할 수 있습니다!
-        </div>
-      `;
+        stepContent.innerHTML = `
+          <div class="explanation-box">
+            <p class="exp-title">💡 <strong>피자 크기 비교 결과</strong></p>
+            <p class="exp-desc"><strong>피자 B</strong>가 <strong>피자 A</strong>보다 더 큽니다.</p>
+            <div class="exp-step">
+              • <strong>같은 크기로 맞춰보기:</strong> 두 피자를 똑같이 <strong>${commonDenom}조각</strong> 크기로 나누면, 피자 A는 <strong>${convertedNum1}조각</strong>, 피자 B는 <strong>${convertedNum2}조각</strong>이 됩니다.<br>
+              • <strong>차이:</strong> 피자 B가 피자 A보다 <strong>${diffSlices}조각</strong> 더 많습니다.
+            </div>
+          </div>
+        `;
+      }
     } else if (state.mode === 'addition') {
       const sumNum = convertedNum1 + convertedNum2;
       const g = gcd(sumNum, commonDenom);
       const simpNum = sumNum / g;
       const simpDenom = commonDenom / g;
+      const totalPizzas = (sumNum / commonDenom).toFixed(2);
 
       balanceSymbol.textContent = '+';
       balanceSymbol.style.color = '#8b5cf6';
       balanceVerdict.className = 'balance-verdict verdict-equal';
       balanceVerdict.innerHTML = `
-        합계: <span class="fraction-display" style="font-size:1.1rem;"><span class="fraction-numerator">${state.pizza1.num}</span><span class="fraction-denominator">${state.pizza1.denom}</span></span> + <span class="fraction-display" style="font-size:1.1rem;"><span class="fraction-numerator">${state.pizza2.num}</span><span class="fraction-denominator">${state.pizza2.denom}</span></span> = <span class="fraction-display" style="font-size:1.1rem;color:#8b5cf6;"><span class="fraction-numerator"><strong>${sumNum}</strong></span><span class="fraction-denominator"><strong>${commonDenom}</strong></span></span> (기약분수: <span class="fraction-display" style="font-size:1.1rem;color:#10b981;"><span class="fraction-numerator"><strong>${simpNum}</strong></span><span class="fraction-denominator"><strong>${simpDenom}</strong></span></span> 또는 ${(sumNum / commonDenom).toFixed(3)}판)
+        두 피자 합계: <strong>${sumNum}/${commonDenom}판</strong> ${simpDenom !== commonDenom ? `(간단히 <strong>${simpNum}/${simpDenom}판</strong>)` : ''} · 약 ${totalPizzas}판
       `;
 
       stepContent.innerHTML = `
-        <div style="line-height: 1.8;">
-          <strong>[분수 덧셈 통분 공식 단계별 풀이]</strong><br>
-          <span class="fraction-display" style="font-size:0.95rem;"><span class="fraction-numerator">${state.pizza1.num}</span><span class="fraction-denominator">${state.pizza1.denom}</span></span> + <span class="fraction-display" style="font-size:0.95rem;"><span class="fraction-numerator">${state.pizza2.num}</span><span class="fraction-denominator">${state.pizza2.denom}</span></span>
-          = <span class="fraction-display" style="font-size:0.95rem;"><span class="fraction-numerator">${convertedNum1}</span><span class="fraction-denominator">${commonDenom}</span></span> + <span class="fraction-display" style="font-size:0.95rem;"><span class="fraction-numerator">${convertedNum2}</span><span class="fraction-denominator">${commonDenom}</span></span>
-          = <span class="fraction-display" style="font-size:0.95rem;"><span class="fraction-numerator">${convertedNum1} + ${convertedNum2}</span><span class="fraction-denominator">${commonDenom}</span></span>
-          = <span class="fraction-display" style="font-size:0.95rem;color:#8b5cf6;"><span class="fraction-numerator"><strong>${sumNum}</strong></span><span class="fraction-denominator"><strong>${commonDenom}</strong></span></span>
+        <div class="explanation-box">
+          <p class="exp-title">💡 <strong>피자 합치기 (통분 덧셈)</strong></p>
+          <p class="exp-desc">두 피자를 한 판으로 모으면 총 <strong>${sumNum}조각</strong> (전체 <strong>${totalPizzas}판</strong> 분량)이 됩니다.</p>
+          <div class="exp-step">
+            • <strong>조각 크기 통일하기:</strong> 두 피자의 조각 크기가 서로 달라서, 모두 똑같이 <strong>${commonDenom}등분</strong> 크기로 맞추었습니다.<br>
+            • <strong>모은 조각 수:</strong> 피자 A에서 <strong>${convertedNum1}조각</strong>, 피자 B에서 <strong>${convertedNum2}조각</strong>을 모아 총 <strong>${sumNum}조각</strong>이 되었습니다.<br>
+            ${simpDenom !== commonDenom ? `• <strong>간단히 나타내기:</strong> 더 큰 조각으로 묶으면 <strong>${simpDenom}조각 중 ${simpNum}조각</strong>과 같습니다.` : ''}
+          </div>
         </div>
       `;
     }

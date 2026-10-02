@@ -76,7 +76,7 @@
 <!-- ADSENSE START: loader -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2228289204702106" crossorigin="anonymous"></script>
 <!-- ADSENSE END: loader -->
-<link rel="stylesheet" href="style.css?v=3.1">
+<link rel="stylesheet" href="style.css?v=3.2">
 </head>
 <body>
 
@@ -107,7 +107,7 @@
     <!-- Column 1: Pizza 1 -->
     <section class="card" aria-labelledby="pizza1-title">
       <div class="card-header-row">
-        <h2 id="pizza1-title">🍕 1. 첫 번째 피자 (A)</h2>
+        <h2 id="pizza1-title">🍕 1. 피자 A</h2>
         <div class="badge-pill">
           <div class="fraction-display" style="color: var(--accent);">
             <span class="fraction-numerator" id="num-val-1">2</span>
@@ -155,7 +155,7 @@
     <!-- Column 2: Pizza 2 -->
     <section class="card" aria-labelledby="pizza2-title">
       <div class="card-header-row">
-        <h2 id="pizza2-title">🍕 2. 두 번째 피자 (B)</h2>
+        <h2 id="pizza2-title">🍕 2. 피자 B</h2>
         <div class="badge-pill blue">
           <div class="fraction-display" style="color: var(--accent2);">
             <span class="fraction-numerator" id="num-val-2">4</span>
@@ -212,12 +212,12 @@
   <!-- Comparison Balance & Interactive Result Section (Kiro Receipt Style) -->
   <section class="card comparison-section" aria-labelledby="comp-title">
     <div class="card-header-row">
-      <h2 id="comp-title">⚖️ 3. 실시간 크기 비교 & 연산 분석</h2>
-      <div class="preset-group">
-        <span class="preset-lbl">추천 예제:</span>
-        <button type="button" id="btn-preset-half" class="chip-btn">½ = 2/4</button>
-        <button type="button" id="btn-preset-third" class="chip-btn">⅓ = 2/6</button>
-      </div>
+      <h2 id="comp-title">⚖️ 3. 실시간 크기 비교</h2>
+    </div>
+    <div class="preset-row">
+      <span class="preset-lbl">추천 예제:</span>
+      <button type="button" id="btn-preset-half" class="chip-btn">½ = 2/4</button>
+      <button type="button" id="btn-preset-third" class="chip-btn">⅓ = 2/6</button>
     </div>
 
     <div class="receipt">
@@ -260,7 +260,7 @@
 
   <!-- Full Width Detailed Guide & Table Section -->
   <section class="card info-section" aria-labelledby="table-title">
-    <h2 id="table-title">📚 4. 초등 필수 동치분수 대조표</h2>
+    <h2 id="table-title">📚 4. 동치분수 대조표</h2>
     <p class="hint">분모와 분자에 0이 아닌 같은 수를 곱하거나 나누어도 분수의 크기는 변하지 않습니다. 아래 표에서 피자 조각의 크기가 어떻게 변하는지 확인해 보세요.</p>
     
     <div class="table-responsive">
@@ -268,11 +268,11 @@
         <thead>
           <tr>
             <th>기준 분수</th>
-            <th>동치분수 (×2)</th>
-            <th>동치분수 (×3)</th>
-            <th>동치분수 (×4)</th>
-            <th>소수 표기</th>
-            <th>백분율 (%)</th>
+            <th>2배 분수</th>
+            <th>3배 분수</th>
+            <th>4배 분수</th>
+            <th>소수</th>
+            <th>백분율</th>
           </tr>
         </thead>
         <tbody>
@@ -451,7 +451,7 @@
 
   <!-- Kiro Signature 'How it works' Section -->
   <section class="card" aria-labelledby="how-title">
-    <h2 id="how-title">🧾 5. 이렇게 동작합니다 (초등 수학 원리)</h2>
+    <h2 id="how-title">🧾 5. 이렇게 동작합니다</h2>
     <ul class="rule-list">
       <li><strong>원형 분수 모델:</strong> 원(피자 한 판 = 1)을 똑같이 몇 등분(분모)으로 나누고 그중 몇 조각(분자)을 차지하는지 기하학적 각도로 직관합니다.</li>
       <li><strong>동치분수 (크기가 같은 분수):</strong> 분모와 분자의 숫자는 달라도(예: 1/2과 2/4), 피자에서 색칠된 실제 면적이 같으면 두 분수는 크기가 같습니다.</li>
@@ -462,7 +462,7 @@
 
   <!-- FAQ Section -->
   <section class="card" aria-labelledby="faq-title">
-    <h2 id="faq-title">❓ 6. 자주 묻는 질문 (FAQ)</h2>
+    <h2 id="faq-title">❓ 6. 자주 묻는 질문</h2>
     <div style="margin-top: 10px;">
       <strong style="color: var(--ink);">Q. 1/2과 2/4는 왜 크기가 같나요?</strong>
       <p class="hint" style="margin-bottom: 12px; line-height: 1.6;">피자 한 판을 2조각으로 나눠 1조각을 먹는 양과, 4조각으로 잘게 나눠 2조각을 먹는 양은 전체 피자에서 차지하는 넓이가 완전히 같기 때문입니다.</p>
@@ -471,7 +471,7 @@
       <p class="hint" style="margin-bottom: 12px; line-height: 1.6;">한 조각의 크기(단위)가 서로 다르면 바로 더할 수 없습니다. 분모를 같게 만들어 조각의 기준 크기를 일치시켜야 비로소 분자끼리 더할 수 있습니다.</p>
       
       <strong style="color: var(--ink);">Q. 소수와 백분율은 분수와 어떻게 연결되나요?</strong>
-      <p class="hint" style="line-height: 1.6;">분수를 나눗셈(분자 ÷ 분모)으로 계산하면 소수가 되며, 여기에 100을 곱하면 100을 기준으로 한 백분율(%)이 됩니다. 예: 1/2 = 0.5 = 50%.</p>
+      <p class="hint" style="line-height: 1.6;">분자를 분모로 나눈 값으로 계산하면 소수가 되며, 여기에 100을 곱하면 100을 기준으로 한 백분율(%)이 됩니다. 예: 1/2 = 0.5 = 50%.</p>
     </div>
   </section>
 

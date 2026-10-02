@@ -183,13 +183,11 @@ body {
 }
 
 .card h2 {
-  font-size: 1.15rem;
+  font-size: 1.125rem;
   font-weight: 700;
-  margin: 0 0 4px;
+  margin: 0;
   color: var(--ink);
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  white-space: nowrap;
 }
 .card-header-row {
   display: flex;
@@ -400,12 +398,12 @@ body {
   font-weight: 700;
 }
 
-.preset-group {
+.preset-row, .preset-group {
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 8px;
   flex-wrap: wrap;
-  margin-bottom: 10px;
+  margin: 0 0 12px;
 }
 .preset-lbl {
   font-size: 0.8125rem;
@@ -413,11 +411,12 @@ body {
   font-weight: 600;
   white-space: nowrap;
 }
-.preset-group .chip-btn {
+.preset-row .chip-btn, .preset-group .chip-btn {
   padding: 6px 12px;
   min-height: 36px;
   font-size: 0.875rem;
   font-weight: 700;
+  white-space: nowrap;
 }
 
 .interactive-balance {
@@ -467,11 +466,35 @@ body {
   font-size: 0.88rem;
   color: #4a362b;
   line-height: 1.7;
-  padding: 10px 12px;
+  padding: 12px 14px;
   background: #fff;
   border: 1px solid var(--line);
-  border-radius: 10px;
+  border-radius: 12px;
   margin-top: 8px;
+}
+.explanation-box {
+  line-height: 1.7;
+}
+.exp-title {
+  font-size: 0.95rem;
+  color: var(--ink);
+  margin: 0 0 6px;
+  font-weight: 700;
+}
+.exp-desc {
+  font-size: 0.9rem;
+  color: var(--ink);
+  margin: 0 0 8px;
+}
+.exp-step {
+  font-size: 0.875rem;
+  color: #4b5563;
+  background: #faf5f0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 12px;
+  margin-top: 6px;
+  line-height: 1.6;
 }
 
 /* Responsive Table Container */
