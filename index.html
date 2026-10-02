@@ -76,7 +76,7 @@
 <!-- ADSENSE START: loader -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2228289204702106" crossorigin="anonymous"></script>
 <!-- ADSENSE END: loader -->
-<link rel="stylesheet" href="style.css?v=2.0">
+<link rel="stylesheet" href="style.css?v=3.0">
 </head>
 <body>
 
@@ -101,15 +101,15 @@
     <button type="button" class="mode-btn" data-mode="addition">➕ 통분 덧셈</button>
   </nav>
 
-  <!-- 2-Column Gold Standard Grid (PC 1:1) -->
+  <!-- 2-Column Gold Standard Grid (PC 1:1, Mobile 1-Column) -->
   <div class="grid2">
 
     <!-- Column 1: Pizza 1 -->
-    <div class="card">
-      <div class="card-title-box">
-        <h2 class="card-title">🍕 첫 번째 피자 (A)</h2>
-        <div class="fraction-badge-box">
-          <div class="fraction-display" style="color: #ea580c;">
+    <section class="card" aria-labelledby="pizza1-title">
+      <div class="card-header-row">
+        <h2 id="pizza1-title">🍕 1. 첫 번째 피자 (A)</h2>
+        <div class="badge-pill">
+          <div class="fraction-display" style="color: var(--accent);">
             <span class="fraction-numerator" id="num-val-1">2</span>
             <span class="fraction-denominator" id="denom-val-1">4</span>
           </div>
@@ -117,19 +117,19 @@
         </div>
       </div>
 
-      <!-- SVG Stage -->
-      <div class="pizza-stage">
-        <svg id="pizza-svg-1" class="pizza-svg" viewBox="0 0 300 300"></svg>
-        <p style="font-size: 0.75rem; color: #94a3b8; margin-top: 0.5rem;">👆 피자 조각을 직접 탭해서 토핑을 올리거나 빼보세요!</p>
+      <!-- Wooden Plate Stage -->
+      <div class="plate">
+        <svg id="pizza-svg-1" class="pizza-svg" viewBox="0 0 300 300" role="img" aria-label="첫 번째 피자 분수 시각화"></svg>
+        <div class="plate-caption">👆 피자 조각을 직접 탭해 토핑을 올리거나 빼보세요</div>
       </div>
 
       <!-- Controls -->
       <div class="control-group">
         <div class="control-label-row">
-          <span>전체 몇 조각으로 나눌까요? (분모)</span>
-          <span style="font-weight: 800; color: #ea580c;" id="denom-label-1">4등분</span>
+          <span class="lbl">전체 몇 조각으로 나눌까요? (분모)</span>
+          <span style="font-weight: 800; color: var(--accent);" id="denom-label-1">4등분</span>
         </div>
-        <input type="range" id="slider-denom-1" class="range-slider" min="1" max="16" value="4">
+        <input type="range" id="slider-denom-1" class="range-slider" min="1" max="16" value="4" aria-label="피자 1 분모 슬라이더">
         <div class="quick-chips">
           <button type="button" class="chip-btn" data-pizza="pizza1" data-chip="2">2등분</button>
           <button type="button" class="chip-btn" data-pizza="pizza1" data-chip="3">3등분</button>
@@ -142,22 +142,22 @@
 
       <div class="control-group">
         <div class="control-label-row">
-          <span>선택한 조각 수 (분자)</span>
+          <span class="lbl">선택한 조각 수 (분자)</span>
         </div>
-        <input type="range" id="slider-num-1" class="range-slider" min="0" max="4" value="2">
+        <input type="range" id="slider-num-1" class="range-slider" min="0" max="4" value="2" aria-label="피자 1 분자 슬라이더">
         <div class="stepper-row">
           <button type="button" id="btn-num-minus-1" class="step-btn">- 1조각</button>
           <button type="button" id="btn-num-plus-1" class="step-btn">+ 1조각</button>
         </div>
       </div>
-    </div>
+    </section>
 
     <!-- Column 2: Pizza 2 -->
-    <div class="card">
-      <div class="card-title-box">
-        <h2 class="card-title">🍕 두 번째 피자 (B)</h2>
-        <div class="fraction-badge-box">
-          <div class="fraction-display" style="color: #2563eb;">
+    <section class="card" aria-labelledby="pizza2-title">
+      <div class="card-header-row">
+        <h2 id="pizza2-title">🍕 2. 두 번째 피자 (B)</h2>
+        <div class="badge-pill blue">
+          <div class="fraction-display" style="color: var(--accent2);">
             <span class="fraction-numerator" id="num-val-2">4</span>
             <span class="fraction-denominator" id="denom-val-2">8</span>
           </div>
@@ -165,40 +165,40 @@
         </div>
       </div>
 
-      <!-- SVG Stage -->
-      <div class="pizza-stage">
-        <svg id="pizza-svg-2" class="pizza-svg" viewBox="0 0 300 300"></svg>
-        <p style="font-size: 0.75rem; color: #94a3b8; margin-top: 0.5rem;">👆 피자 조각을 직접 탭해서 토핑을 올리거나 빼보세요!</p>
+      <!-- Wooden Plate Stage -->
+      <div class="plate">
+        <svg id="pizza-svg-2" class="pizza-svg" viewBox="0 0 300 300" role="img" aria-label="두 번째 피자 분수 시각화"></svg>
+        <div class="plate-caption">👆 피자 조각을 직접 탭해 토핑을 올리거나 빼보세요</div>
       </div>
 
       <!-- Controls -->
       <div class="control-group">
         <div class="control-label-row">
-          <span>전체 몇 조각으로 나눌까요? (분모)</span>
-          <span style="font-weight: 800; color: #2563eb;" id="denom-label-2">8등분</span>
+          <span class="lbl">전체 몇 조각으로 나눌까요? (분모)</span>
+          <span style="font-weight: 800; color: var(--accent2);" id="denom-label-2">8등분</span>
         </div>
-        <input type="range" id="slider-denom-2" class="range-slider" min="1" max="16" value="8">
+        <input type="range" id="slider-denom-2" class="range-slider blue" min="1" max="16" value="8" aria-label="피자 2 분모 슬라이더">
         <div class="quick-chips">
-          <button type="button" class="chip-btn" data-pizza="pizza2" data-chip="2">2등분</button>
-          <button type="button" class="chip-btn" data-pizza="pizza2" data-chip="3">3등분</button>
-          <button type="button" class="chip-btn" data-pizza="pizza2" data-chip="4">4등분</button>
-          <button type="button" class="chip-btn" data-pizza="pizza2" data-chip="6">6등분</button>
-          <button type="button" class="chip-btn active" data-pizza="pizza2" data-chip="8">8등분</button>
-          <button type="button" class="chip-btn" data-pizza="pizza2" data-chip="12">12등분</button>
+          <button type="button" class="chip-btn blue" data-pizza="pizza2" data-chip="2">2등분</button>
+          <button type="button" class="chip-btn blue" data-pizza="pizza2" data-chip="3">3등분</button>
+          <button type="button" class="chip-btn blue" data-pizza="pizza2" data-chip="4">4등분</button>
+          <button type="button" class="chip-btn blue" data-pizza="pizza2" data-chip="6">6등분</button>
+          <button type="button" class="chip-btn blue active" data-pizza="pizza2" data-chip="8">8등분</button>
+          <button type="button" class="chip-btn blue" data-pizza="pizza2" data-chip="12">12등분</button>
         </div>
       </div>
 
       <div class="control-group">
         <div class="control-label-row">
-          <span>선택한 조각 수 (분자)</span>
+          <span class="lbl">선택한 조각 수 (분자)</span>
         </div>
-        <input type="range" id="slider-num-2" class="range-slider" min="0" max="8" value="4">
+        <input type="range" id="slider-num-2" class="range-slider blue" min="0" max="8" value="4" aria-label="피자 2 분자 슬라이더">
         <div class="stepper-row">
           <button type="button" id="btn-num-minus-2" class="step-btn">- 1조각</button>
           <button type="button" id="btn-num-plus-2" class="step-btn">+ 1조각</button>
         </div>
       </div>
-    </div>
+    </section>
 
   </div>
 
@@ -209,10 +209,10 @@
   </div>
   <!-- ADSENSE END: mid -->
 
-  <!-- Comparison Balance & Interactive Result Section -->
-  <section class="card comparison-section">
-    <div class="comparison-header">
-      <h3>🔍 실시간 비교 및 연산 분석기</h3>
+  <!-- Comparison Balance & Interactive Result Section (Kiro Receipt Style) -->
+  <section class="card comparison-section" aria-labelledby="comp-title">
+    <div class="card-header-row">
+      <h2 id="comp-title">⚖️ 3. 실시간 크기 비교 & 연산 분석</h2>
       <div class="preset-group">
         <span class="preset-lbl">추천 예제:</span>
         <button type="button" id="btn-preset-half" class="chip-btn">½ = 2/4</button>
@@ -220,48 +220,48 @@
       </div>
     </div>
 
-    <div class="interactive-balance">
-      <div class="balance-side">
-        <span style="font-weight: 700; color: #ea580c;">피자 A</span>
-        <div class="fraction-display" style="font-size: 1.75rem; color: #ea580c;">
-          <span class="fraction-numerator" id="bal-num-1">2</span>
-          <span class="fraction-denominator" id="bal-denom-1">4</span>
+    <div class="receipt">
+      <h3>계산 결과 분석표 ✓</h3>
+      <div id="balance-verdict" class="balance-verdict verdict-equal">
+        두 분수는 크기가 정확히 같습니다! (동치분수: 2/4 = 4/8)
+      </div>
+
+      <div class="interactive-balance">
+        <div class="balance-side">
+          <span style="font-weight: 700; color: var(--accent);">피자 A</span>
+          <div class="fraction-display" style="font-size: 1.75rem; color: var(--accent);">
+            <span class="fraction-numerator" id="bal-num-1">2</span>
+            <span class="fraction-denominator" id="bal-denom-1">4</span>
+          </div>
+        </div>
+
+        <div id="balance-symbol" class="balance-symbol">=</div>
+
+        <div class="balance-side">
+          <span style="font-weight: 700; color: var(--accent2);">피자 B</span>
+          <div class="fraction-display" style="font-size: 1.75rem; color: var(--accent2);">
+            <span class="fraction-numerator" id="bal-num-2">4</span>
+            <span class="fraction-denominator" id="bal-denom-2">8</span>
+          </div>
         </div>
       </div>
 
-      <div id="balance-symbol" class="balance-symbol">=</div>
-
-      <div class="balance-side">
-        <span style="font-weight: 700; color: #2563eb;">피자 B</span>
-        <div class="fraction-display" style="font-size: 1.75rem; color: #2563eb;">
-          <span class="fraction-numerator" id="bal-num-2">4</span>
-          <span class="fraction-denominator" id="bal-denom-2">8</span>
-        </div>
-      </div>
-    </div>
-
-    <div id="balance-verdict" class="balance-verdict verdict-equal">
-      두 분수는 크기가 정확히 같습니다! (동치분수: 2/4 = 4/8)
-    </div>
-
-    <!-- Step-by-Step Educational Explanation Card -->
-    <div class="explanation-card">
-      <div class="explanation-title">💡 초등 수학 개념 원리 돋보기</div>
+      <!-- Step-by-Step Educational Explanation Card -->
       <div id="step-content" class="explanation-content">
         통분 원리 로딩 중...
       </div>
     </div>
 
     <!-- Kiro Standard Result Copy Button -->
-    <div style="margin-top: 12px;">
-      <button type="button" id="btn-copy-result" class="btn" style="width: 100%; font-weight: 700;">📋 실시간 계산 결과 복사하기</button>
+    <div style="margin-top: 14px;">
+      <button type="button" id="btn-copy-result" class="btn primary" style="width: 100%;">📋 실시간 계산 결과 복사하기</button>
     </div>
   </section>
 
   <!-- Full Width Detailed Guide & Table Section -->
-  <section class="card info-section">
-    <h3>📚 자주 쓰이는 대표 동치분수 한눈에 보기</h3>
-    <p>분모와 분자에 0이 아닌 같은 수를 곱하거나 나누어도 분수의 크기는 변하지 않습니다. 아래 표에서 피자 조각의 크기가 어떻게 변하는지 확인해 보세요.</p>
+  <section class="card info-section" aria-labelledby="table-title">
+    <h2 id="table-title">📚 4. 초등 필수 동치분수 대조표</h2>
+    <p class="hint">분모와 분자에 0이 아닌 같은 수를 곱하거나 나누어도 분수의 크기는 변하지 않습니다. 아래 표에서 피자 조각의 크기가 어떻게 변하는지 확인해 보세요.</p>
     
     <div class="table-responsive">
       <table class="fraction-table">
@@ -449,6 +449,32 @@
     </div>
   </section>
 
+  <!-- Kiro Signature 'How it works' Section -->
+  <section class="card" aria-labelledby="how-title">
+    <h2 id="how-title">🧾 5. 이렇게 동작합니다 (초등 수학 원리)</h2>
+    <ul class="rule-list">
+      <li><strong>원형 분수 모델:</strong> 원(피자 한 판 = 1)을 똑같이 몇 등분(분모)으로 나누고 그중 몇 조각(분자)을 차지하는지 기하학적 각도로 직관합니다.</li>
+      <li><strong>동치분수 (크기가 같은 분수):</strong> 분모와 분자의 숫자는 달라도(예: 1/2과 2/4), 피자에서 색칠된 실제 면적이 같으면 두 분수는 크기가 같습니다.</li>
+      <li><strong>최소공배수 자동 통분:</strong> 분모가 다른 두 분수를 더할 때는 두 분모의 최소공배수로 똑같이 조각을 다시 쪼개어(통분) 같은 단위로 합산합니다.</li>
+      <li><strong>기기 내 100% 로컬 연산:</strong> 모든 분수 계산과 SVG 렌더링은 내 기기 브라우저 메모리에서만 동작하며 외부 서버로 데이터를 전송하지 않습니다.</li>
+    </ul>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="card" aria-labelledby="faq-title">
+    <h2 id="faq-title">❓ 6. 자주 묻는 질문 (FAQ)</h2>
+    <div style="margin-top: 10px;">
+      <strong style="color: var(--ink);">Q. 1/2과 2/4는 왜 크기가 같나요?</strong>
+      <p class="hint" style="margin-bottom: 12px; line-height: 1.6;">피자 한 판을 2조각으로 나눠 1조각을 먹는 양과, 4조각으로 잘게 나눠 2조각을 먹는 양은 전체 피자에서 차지하는 넓이가 완전히 같기 때문입니다.</p>
+      
+      <strong style="color: var(--ink);">Q. 통분은 왜 분모를 같게 만드나요?</strong>
+      <p class="hint" style="margin-bottom: 12px; line-height: 1.6;">한 조각의 크기(단위)가 서로 다르면 바로 더할 수 없습니다. 분모를 같게 만들어 조각의 기준 크기를 일치시켜야 비로소 분자끼리 더할 수 있습니다.</p>
+      
+      <strong style="color: var(--ink);">Q. 소수와 백분율은 분수와 어떻게 연결되나요?</strong>
+      <p class="hint" style="line-height: 1.6;">분수를 나눗셈(분자 ÷ 분모)으로 계산하면 소수가 되며, 여기에 100을 곱하면 100을 기준으로 한 백분율(%)이 됩니다. 예: 1/2 = 0.5 = 50%.</p>
+    </div>
+  </section>
+
   <!-- ADSENSE START: bottom -->
   <div class="ad-box ad-bottom">
     <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-2228289204702106" data-ad-slot="3416334507" data-ad-format="auto" data-full-width-responsive="true"></ins>
@@ -460,17 +486,15 @@
 
 <div id="toast" class="toast" role="status" aria-live="polite"></div>
 
-<!-- Footer -->
-<footer class="site-footer">
-  <div class="footer-inner">
-    <div class="footer-links">
-      <a href="about.html">서비스 소개 및 교육 기준</a>
-      <a href="privacy.html">개인정보처리방침</a>
-      <a href="https://enjoy-onepage.com">원페이지 허브 홈</a>
-    </div>
-    <div class="footer-copy">
-      &copy; 2026 즐겨요 원페이지 (enjoy-onepage.com) · 모든 계산은 브라우저 클라이언트 메모리에서 안전하게 처리됩니다.
-    </div>
+<!-- Footer (Kiro Standard Clean Footer) -->
+<footer class="footer">
+  <div>
+    <a href="about.html">서비스 소개 및 교육 기준</a> · 
+    <a href="privacy.html">개인정보처리방침</a> · 
+    <a href="https://enjoy-onepage.com">원페이지 허브 홈</a>
+  </div>
+  <div style="margin-top: 8px;">
+    &copy; 2026 즐겨요 원페이지 (enjoy-onepage.com) · 브라우저 로컬 연산 원칙
   </div>
 </footer>
 

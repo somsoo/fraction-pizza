@@ -93,7 +93,7 @@
     return `M ${cx} ${cy} L ${x1} ${y1} A ${r} ${r} 0 ${largeArc} 1 ${x2} ${y2} Z`;
   }
 
-  // Pizza SVG Renderer
+  // Pizza SVG Renderer (Kiro Visual Standard)
   function renderPizza(svgId, pizzaData, pizzaKey) {
     const svg = document.getElementById(svgId);
     if (!svg) return;
@@ -101,29 +101,47 @@
 
     const cx = 150;
     const cy = 150;
-    const radius = 120;
-    const crustRadius = 132;
+    const radius = 118;
+    const crustRadius = 134;
     const denom = pizzaData.denom;
 
-    // Outer Crust Background
+    // Defs for gradients & filters if not already added
+    const defs = document.createElementNS('http://www.w3.org/2000/svg', 'defs');
+    defs.innerHTML = `
+      <radialGradient id="crustGrad" cx="50%" cy="50%" r="50%">
+        <stop offset="70%" stop-color="#d97706"/>
+        <stop offset="95%" stop-color="#b45309"/>
+        <stop offset="100%" stop-color="#78350f"/>
+      </radialGradient>
+      <radialGradient id="doughGrad" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#fffbeb"/>
+        <stop offset="85%" stop-color="#fef3c7"/>
+        <stop offset="100%" stop-color="#fde68a"/>
+      </radialGradient>
+    `;
+    svg.appendChild(defs);
+
+    // Outer Baked Crust (Deep Golden Brown Ring)
     const crust = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     crust.setAttribute('cx', cx);
     crust.setAttribute('cy', cy);
     crust.setAttribute('r', crustRadius);
-    crust.setAttribute('fill', '#d97706');
-    crust.setAttribute('stroke', '#b45309');
-    crust.setAttribute('stroke-width', '4');
+    crust.setAttribute('fill', 'url(#crustGrad)');
+    crust.setAttribute('stroke', '#78350f');
+    crust.setAttribute('stroke-width', '2.5');
     svg.appendChild(crust);
 
-    // Inner Base Circle (Empty Dough)
+    // Inner Mozzarella Dough Base
     const base = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     base.setAttribute('cx', cx);
     base.setAttribute('cy', cy);
     base.setAttribute('r', radius);
-    base.setAttribute('fill', '#fde68a');
+    base.setAttribute('fill', 'url(#doughGrad)');
+    base.setAttribute('stroke', '#f59e0b');
+    base.setAttribute('stroke-width', '1.5');
     svg.appendChild(base);
 
-    // Group for slices
+    // Slices Layer
     const sliceAngle = 360 / denom;
     for (let i = 0; i < denom; i++) {
       const startDeg = i * sliceAngle;
@@ -136,49 +154,69 @@
       path.setAttribute('data-index', i);
 
       if (isSelected) {
-        path.setAttribute('fill', pizzaKey === 'pizza1' ? '#f97316' : '#3b82f6');
+        path.setAttribute('fill', pizzaKey === 'pizza1' ? '#ea580c' : '#2563eb');
         path.setAttribute('stroke', '#ffffff');
         path.setAttribute('stroke-width', '2.5');
       } else {
-        path.setAttribute('fill', 'transparent');
-        path.setAttribute('stroke', '#cbd5e1');
+        path.setAttribute('fill', 'rgba(254, 243, 199, 0.4)');
+        path.setAttribute('stroke', '#d97706');
         path.setAttribute('stroke-width', '1.5');
-        path.setAttribute('stroke-dasharray', denom > 8 ? '2,2' : 'none');
+        path.setAttribute('stroke-dasharray', denom > 8 ? '3,2' : '4,3');
       }
+      svg.appendChild(path);
 
-      // Add Pepperoni topping dots for visual delight if selected
+      // Appetizing Pepperoni / Herb Toppings if selected
       if (isSelected && denom <= 12) {
         const midRad = ((startDeg + endDeg) / 2 - 90) * Math.PI / 180;
-        const dotR = radius * 0.65;
+        const dotR = radius * 0.62;
         const dotX = cx + dotR * Math.cos(midRad);
         const dotY = cy + dotR * Math.sin(midRad);
-        const dot = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        dot.setAttribute('cx', dotX);
-        dot.setAttribute('cy', dotY);
-        dot.setAttribute('r', Math.max(4, 18 / Math.sqrt(denom)));
-        dot.setAttribute('fill', '#dc2626');
-        dot.setAttribute('opacity', '0.85');
-        dot.style.pointerEvents = 'none';
-        svg.appendChild(path);
-        svg.appendChild(dot);
-      } else {
-        svg.appendChild(path);
+
+        const pep = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        pep.setAttribute('cx', dotX);
+        pep.setAttribute('cy', dotY);
+        pep.setAttribute('r', Math.max(5, 17 / Math.sqrt(denom)));
+        pep.setAttribute('fill', pizzaKey === 'pizza1' ? '#b91c1c' : '#1d4ed8');
+        pep.setAttribute('stroke', '#ffffff');
+        pep.setAttribute('stroke-width', '1.5');
+        pep.style.pointerEvents = 'none';
+        svg.appendChild(pep);
+
+        // Basil / Herb Fleck for Pizza 1
+        if (pizzaKey === 'pizza1' && denom <= 8) {
+          const herb = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+          herb.setAttribute('cx', dotX + (Math.sin(i) * 6));
+          herb.setAttribute('cy', dotY - 5);
+          herb.setAttribute('r', '2.5');
+          herb.setAttribute('fill', '#15803d');
+          herb.style.pointerEvents = 'none';
+          svg.appendChild(herb);
+        }
       }
 
-      // Interaction: Click / Touch Toggle Slice
+      // Slice Tap Event
       path.addEventListener('click', (e) => {
         e.stopPropagation();
         toggleSlice(pizzaKey, i);
       });
     }
 
-    // Center decorative hub
-    const hub = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-    hub.setAttribute('cx', cx);
-    hub.setAttribute('cy', cy);
-    hub.setAttribute('r', 8);
-    hub.setAttribute('fill', '#78350f');
-    svg.appendChild(hub);
+    // Center Decorative Wooden Table Rivet
+    const hubOuter = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    hubOuter.setAttribute('cx', cx);
+    hubOuter.setAttribute('cy', cy);
+    hubOuter.setAttribute('r', 10);
+    hubOuter.setAttribute('fill', '#78350f');
+    hubOuter.setAttribute('stroke', '#fde68a');
+    hubOuter.setAttribute('stroke-width', '2');
+    svg.appendChild(hubOuter);
+
+    const hubInner = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+    hubInner.setAttribute('cx', cx);
+    hubInner.setAttribute('cy', cy);
+    hubInner.setAttribute('r', 4);
+    hubInner.setAttribute('fill', '#f59e0b');
+    svg.appendChild(hubInner);
   }
 
   function toggleSlice(pizzaKey, index) {
