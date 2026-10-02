@@ -1,0 +1,11 @@
+{
+  "name": "분수 피자 슬라이서",
+  "short_name": "분수피자",
+  "description": "인터랙티브 원형 분수 통분·약분 시각화 도구",
+  "lang": "ko",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#f97316"
+}

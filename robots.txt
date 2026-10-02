@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://fraction-pizza.enjoy-onepage.com/sitemap.xml

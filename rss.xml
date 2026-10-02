@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>분수 피자 슬라이서 | 인터랙티브 원형 분수 통분·약분 시각화</title>
+  <link>https://fraction-pizza.enjoy-onepage.com/</link>
+  <description>피자를 직접 등분하고 조각을 골라 분수의 크기를 직관적으로 비교하고 통분과 덧셈을 시각화하는 초등 에듀테크 도구.</description>
+  <language>ko-kr</language>
+  <atom:link href="https://fraction-pizza.enjoy-onepage.com/rss.xml" rel="self" type="application/rss+xml" />
+  <lastBuildDate>Fri, 02 Oct 2026 04:45:00 +0000</lastBuildDate>
+  <item>
+    <title>분수 피자 슬라이서 - 동치분수 및 통분 시뮬레이터</title>
+    <link>https://fraction-pizza.enjoy-onepage.com/</link>
+    <guid isPermaLink="true">https://fraction-pizza.enjoy-onepage.com/</guid>
+    <description>초등 3~6학년 분수 교육과정을 위한 원형 피자 분할 시각화 도구.</description>
+    <pubDate>Fri, 02 Oct 2026 13:45:00 +0900</pubDate>
+  </item>
+</channel>
+</rss>
